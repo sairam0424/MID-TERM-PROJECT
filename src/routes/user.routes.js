@@ -2,7 +2,7 @@
 each part is doing: */
 const { authJwt } = require("../middleware");
 
-const contoller = require("../controllers/user.controller");
+const controller = require("../controllers/user.controller");
 
 module.exports = function (app) {
   app.user(function (req, res, next) {
