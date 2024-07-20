@@ -1,50 +1,86 @@
 <%- include('layout/header') %>
- 
-<div class="container">
-    <div class="row my-4">
-        <div class="col-lg-12">
-            <% if (message) { %>
-             <div class="alert alert-dismissible fade show alert-<%= message.type %>" role = "alert">
-                <button class="btn-close" type="button" data-bs-dismiss = "alert" aria-label="close"></button>
-                <strong><%= message.message  %></strong>
-             </div>
-            <% } %>
-            <div class="table-responsive">
-                <% if(users!= " ") { %>
-                    <table class="table table-stripped text-center">
-                        <thead>
-                            <tr class="table-dark">
-                                <th>ID</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% users.forEach((row,index) => { %>
-                                <tr class="align-middle">
-                                    <td><%= index %></td>
-                                    <td><img src="<%= row.image %>" width="50" class="img-thumbnail"></td>
-                                    <td><%= row.name %></td>
-                                    <td><%= row.email %></td>
-                                    <td><%= row.phone %></td>
-                                    <td>
-                                        <a href="/edit/<%= row._id %>" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a>
-                                        <a href="/delete/<%= row._id %>" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a>
-                                    </td>
-                                </tr>
-                            <% }) %>
-                        </tbody>
-                    </table>
-                 
-                <% } else{ %>
-                    <h1 class="text-center text-secondary mt-5"> No users found in the database</h1>
+
+<style>
+    .custom-background {
+        background: linear-gradient(135deg, #f4f6f7, #0a0005);
+        min-height: 100vh; /* Ensure the background covers the entire viewport */
+        padding-top: 20px; /* Adjust padding as needed */
+    }
+
+    .card {
+        background-color: #ffffff; /* White background for the cards */
+        border-radius: 15px; /* Rounded corners for the cards */
+        overflow: hidden; /* Ensure content does not overflow */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow for the cards */
+    }
+
+    .card-body {
+        padding: 20px; /* Padding inside each card body */
+    }
+
+    .btn-edit,
+    .btn-delete {
+        border-radius: 50px; /* Create oval-shaped buttons */
+        width: 100px; /* Adjust the width of the buttons */
+    }
+
+    .header {
+        background-color: #ffffff; /* White background for the header */
+        padding: 10px 0; /* Padding for top and bottom */
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* Bottom border with light gray color */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for the header */
+    }
+
+    .header h1 {
+        color: #3494e6; /* Blue color for the header title */
+        font-size: 28px; /* Adjust font size as needed */
+        font-weight: bold; /* Bold font weight for emphasis */
+    }
+</style>
+
+<div class="custom-background">
+    <div class="header">
+        <div class="container">
+            <h1 class="text-center">Items in Cart</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-lg-12">
+                <% if (message) { %>
+                    <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong><%= message.message %></strong>
+                    </div>
+                <% } %>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <% if (users.length > 0) { %>
+                        <% users.forEach((user, index) => { %>
+                            <div class="col">
+                                <div class="card">
+                                    <img src="<%= user.image %>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= user.name %></h5>
+                                        <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+                                        <p class="card-text"><strong>Phone:</strong> <%= user.phone %></p>
+                                        <div class="d-flex justify-content-end">
+                                            <a href="/edit/<%= user._id %>" class="btn btn-success btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="/delete/<%= user._id %>" class="btn btn-danger ms-2 btn-delete"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div class="col">
+                            <h4 class="text-center text-secondary mt-5">No users found in the database</h4>
+                        </div>
                     <% } %>
+                </div>
             </div>
         </div>
     </div>
 </div>
- 
+
 <%- include('layout/footer') %>
