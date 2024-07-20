@@ -16,7 +16,7 @@ const Product= require('./models/product.model'); // Product model for interacti
 const router = express.Router();
  
 const app = express();
-const PORT = process.env.PORT || 8083;
+const PORT = 8083;
 const dbConfig = require('./config/dbconfig');
  
 // Middleware
