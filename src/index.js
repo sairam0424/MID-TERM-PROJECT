@@ -176,5 +176,5 @@ app.post('/signup', async (req, res) => {
 // app.set('view engine', 'ejs');
   
 app.listen(PORT, () => {
-  console.log(`server started at http://localhost:${PORT}`);
+  console.log(`server started at http://localhost:${PORT}/login`);
 });
