@@ -16,7 +16,7 @@ const Product= require('./models/product.model'); // Product model for interacti
 const router = express.Router();
  
 const app = express();
-const PORT = 8083;
+const PORT = 9027;
 const dbConfig = require('./config/dbconfig');
  
 // Middleware
@@ -151,29 +151,18 @@ app.post('/signup', async (req, res) => {
   }
 });
  
-
+app.get('/aboutus', (req, res) => {
+  res.render('aboutus');
+});
  
-// Start server
- 
- 
- 
- 
-//database connection
- 
-// mongoose.connect(process.env.DB_URI , {  useNewUrlParser: true, useUnifiedTopology: true}); //, { useNewUrlParser: true , useUnifiedTopology:true }
-// const db = mongoose.connection;
-// db.on("error",(error) => console.log(error));
-// db.once("open",() => console.log("connected to the database"))
- 
-// app.use((req,res, next)=>{
-//   res.locals.message = req.session.message;
-//   delete req.session.message;
-//   next();
-// });
- 
-// app.use(express.static("/src/uploads"));
- 
-// app.set('view engine', 'ejs');
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).send('Error logging out');
+    }
+    res.redirect('/login');
+  });
+});
   
 app.listen(PORT, () => {
   console.log(`server started at http://localhost:${PORT}/login`);
