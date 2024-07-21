@@ -19,6 +19,9 @@
         .form-container {
             display: flex;
             flex-direction: column;
+            /* justify-content: center; */
+
+            /* align-self: auto; */
             width: 400px;
             background-color: #fff;
             padding: 20px;
@@ -55,6 +58,10 @@
 
         .submit-btn {
             background-color: #007bff;
+
+            display: flex;
+
+            justify-content: center;
             color: #fff;
             padding: 10px 20px;
             font-size: 16px;
@@ -64,6 +71,14 @@
             transition: background-color 0.2s, transform 0.2s ease;
         }
 
+        .button_center{
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
         .submit-btn:hover {
             background-color: #070c11;
             transform: translateY(-2px);
@@ -89,7 +104,12 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <button type="submit" class="submit-btn">SignUp</button>
+                <div class="button_center">
+
+                    <button type="submit" class="submit-btn">SignUp</button>
+
+                </div>
+                
             </form>
         </div>
     </div>
