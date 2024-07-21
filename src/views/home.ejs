@@ -35,13 +35,14 @@
         color: #3494e6; /* Blue color for the header title */
         font-size: 28px; /* Adjust font size as needed */
         font-weight: bold; /* Bold font weight for emphasis */
+        text-align: center; /* Center align header title */
     }
 </style>
 
 <div class="custom-background">
     <div class="header">
         <div class="container">
-            <h1 class="text-center">Items in Cart</h1>
+            <h1>Items in Cart</h1>
         </div>
     </div>
 
@@ -55,23 +56,21 @@
                     </div>
                 <% } %>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <% if (users.length > 0) { %>
-                        <% users.forEach((user, index) => { %>
-                            <div class="col">
-                                <div class="card">
-                                    <img src="<%= user.image %>" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><%= user.name %></h5>
-                                        <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
-                                        <p class="card-text"><strong>Phone:</strong> <%= user.phone %></p>
-                                        <div class="d-flex justify-content-end">
-                                            <a href="/edit/<%= user._id %>" class="btn btn-success btn-edit"><i class="fas fa-edit"></i> Edit</a>
-                                            <a href="/delete/<%= user._id %>" class="btn btn-danger ms-2 btn-delete"><i class="fas fa-trash"></i> Delete</a>
-                                        </div>
+                    <% if (user) { %>
+                        <div class="col">
+                            <div class="card">
+                                <img src="" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= user.username %></h5>
+                                    <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+                                    <p class="card-text"><strong>Phone:</strong> </p>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="/edit/<%= user._id %>" class="btn btn-success btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        <a href="/delete/<%= user._id %>" class="btn btn-danger ms-2 btn-delete"><i class="fas fa-trash"></i> Delete</a>
                                     </div>
                                 </div>
                             </div>
-                        <% }) %>
+                        </div>
                     <% } else { %>
                         <div class="col">
                             <h4 class="text-center text-secondary mt-5">No users found in the database</h4>
