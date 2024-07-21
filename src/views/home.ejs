@@ -1,148 +1,165 @@
 <%- include('layout/header') %>
 
 <style>
-    .custom-background {
-        background: linear-gradient(135deg, #f4f6f7, #0a0005);
-        min-height: 100vh; /* Ensure the background covers the entire viewport */
-        padding-top: 20px; /* Adjust padding as needed */
-    }
+  .custom-background {
+    background: linear-gradient(135deg, #f4f6f7, #0a0005);
+    min-height: 100vh; /* Ensure the background covers the entire viewport */
+    padding-top: 20px; /* Adjust padding as needed */
+  }
 
-    .card {
-        background-color: #d7e5c2; /* White background for the cards */
-        border-radius: 15px; /* Rounded corners for the cards */
-        overflow: hidden; /* Ensure content does not overflow */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow for the cards */
-        width: 200px; /* Adjust width as needed */
-        height: 320px; /* Adjust height as needed */
-        position: relative; /* Ensure relative positioning for absolute buttons */
-        transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
-        display: flex; /* Use flexbox for button positioning */
-        flex-direction: column; /* Stack buttons vertically */
-        justify-content: space-between; /* Space buttons evenly */
-        align-items: center; /* Center align buttons */
-        margin: 20px; /* Add margin around each card */
-    }
+  .card {
+    background-color: #d7e5c2; /* White background for the cards */
+    border-radius: 15px; /* Rounded corners for the cards */
+    overflow: hidden; /* Ensure content does not overflow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the cards */
+    width: 200px; /* Adjust width as needed */
+    height: 320px; /* Adjust height as needed */
+    position: relative; /* Ensure relative positioning for absolute buttons */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
+    display: flex; /* Use flexbox for button positioning */
+    flex-direction: column; /* Stack buttons vertically */
+    justify-content: space-between; /* Space buttons evenly */
+    align-items: center; /* Center align buttons */
+    margin: 20px; /* Add margin around each card */
+  }
 
-    .card:hover {
-        transform: translateY(-8px); /* Move the card up by 8px on hover */
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Larger shadow on hover */
-    }
+  .card:hover {
+    transform: translateY(-8px); /* Move the card up by 8px on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+  }
 
-    .card-body {
-        padding: 20px; /* Padding inside each card body */
-        flex: 1; /* Allow the body to expand within the card */
-        display: flex; /* Use flexbox for vertical centering */
-        flex-direction: column; /* Stack elements vertically */
-        justify-content: center; /* Center content vertically */
-        text-align: center; /* Center text horizontally */
-    }
+  .card-body {
+    padding: 20px; /* Padding inside each card body */
+    flex: 1; /* Allow the body to expand within the card */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center text horizontally */
+  }
 
-    .card-img-top {
-        width: 100%; /* Ensure image fills the card width */
-        height: auto; /* Maintain aspect ratio */
-        padding: 5px;
-        border-radius: 20%;
-        border-bottom: 1px solid #ddd; /* Optional: Add border below image */
-    }
+  .card-img-top {
+    width: 100%; /* Ensure image fills the card width */
+    height: auto; /* Maintain aspect ratio */
+    padding: 5px;
+    border-radius: 20%;
+    border-bottom: 1px solid #ddd; /* Optional: Add border below image */
+  }
 
-    .btn-edit,
-    .btn-delete {
-        border-radius: 50%; /* Make buttons circular */
-        width: 50px; /* Adjust button width */
-        height: 50px; /* Ensure button is a circle */
-        background-color: transparent; /* Transparent background */
-        color: #0c0c0c; /* Button text color */
-        display: flex; /* Use flexbox for button contents */
-        justify-content: center; /* Center content horizontally */
-        align-items: center; /* Center content vertically */
-        font-size: 18px; /* Adjust font size */
-        position: absolute; /* Position absolutely within the card */
-        bottom: -30px; /* Initially position below the card */
-        opacity: 0; /* Initially hidden */
-        transition: opacity 0.2s, transform 0.2s, background-color 0.2s; /* Smooth transitions */
-        cursor: pointer; /* Cursor style on hover */
-    }
+  .btn-edit,
+  .btn-delete {
+    border-radius: 50%; /* Make buttons circular */
+    width: 50px; /* Adjust button width */
+    height: 50px; /* Ensure button is a circle */
+    background-color: transparent; /* Transparent background */
+    color: #0c0c0c; /* Button text color */
+    display: flex; /* Use flexbox for button contents */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    font-size: 18px; /* Adjust font size */
+    position: absolute; /* Position absolutely within the card */
+    bottom: -30px; /* Initially position below the card */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.2s, transform 0.2s, background-color 0.2s; /* Smooth transitions */
+    cursor: pointer; /* Cursor style on hover */
+  }
 
-    .card:hover .btn-edit,
-    .card:hover .btn-delete {
-        opacity: 1; /* Show buttons on hover */
-        bottom: 10px; /* Move buttons up on hover */
-        background-color: transparent; /* Change background color on hover */
-        
-    }
+  .card:hover .btn-edit,
+  .card:hover .btn-delete {
+    opacity: 1; /* Show buttons on hover */
+    bottom: 10px; /* Move buttons up on hover */
+    background-color: transparent; /* Change background color on hover */
+  }
 
-    .btn-edit {
-        left: calc(25% - 40px); /* Position edit button centered */
-    }
+  .btn-edit {
+    left: calc(25% - 40px); /* Position edit button centered */
+  }
 
-    .btn-delete {
-        right: calc(25% - 40px); /* Position delete button centered */
-    }
+  .btn-delete {
+    right: calc(25% - 40px); /* Position delete button centered */
+  }
 
-    .hem {
-        margin-top: 10px; /* Add margin between buttons */
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
+  .hem {
+    margin-top: 10px; /* Add margin between buttons */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 
-    .header {
-        background-color: #ffffff; /* White background for the header */
-        padding: 10px 0; /* Padding for top and bottom */
-        border-bottom: 1px solid rgba(0,0,0,0.1); /* Bottom border with light gray color */
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for the header */
-    }
+  .header {
+    background-color: #ffffff; /* White background for the header */
+    padding: 10px 0; /* Padding for top and bottom */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Bottom border with light gray color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for the header */
+  }
 
-    .header h1 {
-        color: #3494e6; /* Blue color for the header title */
-        font-size: 28px; /* Adjust font size as needed */
-        font-weight: bold; /* Bold font weight for emphasis */
-    }
+  .header h1 {
+    color: #3494e6; /* Blue color for the header title */
+    font-size: 28px; /* Adjust font size as needed */
+    font-weight: bold; /* Bold font weight for emphasis */
+  }
 </style>
 
 <div class="custom-background">
-    <div class="header">
-        <div class="container">
-            <h1 class="text-center">Items in Cart</h1>
-        </div>
-    </div>
-
+  <div class="header">
     <div class="container">
-        <div class="row my-4">
-            <div class="col-lg-12">
-                <% if (message) { %>
-                    <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
-                        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <strong><%= message.message %></strong>
-                    </div>
-                <% } %>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <% if (users.length > 0) { %>
-                        <% users.forEach((user, index) => { %>
-                            <div class="col">
-                                <div class="card">
-                                    <img src="<%= user.image %>" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><%= user.name %></h5>
-                                        <p class="card-text"><strong>ID:</strong> <%= user.email %></p>
-                                        <p class="card-text"><strong>Quantity:</strong> <%= user.phone %></p>
-                                        <div class="hem">
-                                            <a href="/edit/<%= user._id %>" class="btn btn-success btn-edit"><i class="fas fa-edit"></i> </a>
-                                            <a href="/delete/<%= user._id %>" class="btn btn-danger btn-delete"><i class="fas fa-trash"></i> </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <% }) %>
-                    <% } else { %>
-                        <div class="col">
-                            <h4 class="text-center text-secondary mt-5">Add products to view</h4>
-                        </div>
-                    <% } %>
-                </div>
-            </div>
-        </div>
+      <h1 class="text-center">Items in Cart</h1>
     </div>
+  </div>
+
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-lg-12">
+        <% if (message) { %>
+        <div
+          class="alert alert-dismissible fade show alert-<%= message.type %>"
+          role="alert"
+        >
+          <button
+            class="btn-close"
+            type="button"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+          <strong><%= message.message %></strong>
+        </div>
+        <% } %>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <% if (users.length > 0) { %> <% users.forEach((user, index) => { %>
+          <div class="col">
+            <div class="card">
+              <img src="<%= user.image %>" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <p class="card-title"><strong>Name:</strong><%= user.name %></p>
+                <p class="card-text"><strong>ID:</strong> <%= user.email %></p>
+                <p class="card-text">
+                  <strong>Quantity:</strong> <%= user.phone %>
+                </p>
+                <div class="hem">
+                  <a
+                    href="/edit/<%= user._id %>"
+                    class="btn btn-success btn-edit"
+                    ><i class="fas fa-edit"></i>
+                  </a>
+                  <a
+                    href="/delete/<%= user._id %>"
+                    class="btn btn-danger btn-delete"
+                    ><i class="fas fa-trash"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %> <% } else { %>
+          <div class="col">
+            <h4 class="text-center text-secondary mt-5">
+              Add products to view
+            </h4>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%- include('layout/footer') %>

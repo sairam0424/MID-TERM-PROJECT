@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      /* Reset and base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      /* Header styles */
+      header {
+        background-color: #232f3e;
+        color: #fff;
+        padding: 10px 20px;
+      }
+
+      nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+      }
+
+      nav ul li {
+        margin-right: 20px;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      /* Main content styles */
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+
+      .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .product-card {
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        width: calc(33.33% - 20px); /* Adjust based on number of columns */
+        flex: 1 1 30%; /* Flex properties to allow responsive layout */
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-image {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .product-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      .product-details {
+        text-align: center;
+      }
+
+      .product-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        font-size: 16px;
+        color: #007bff;
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #232f3e;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        position: sticky;
+        border: 0%;
+      }
+
+      .inf {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-change">
+          <!-- <div class="main_nav">
+              <div class="logo">
+                <a href="/" class="navbar-brand"><i class="fas fa-code me-2"></i>SHOP CART</a>
+ 
+              <button class="navbar-toggler" data-bs-target="#my-nav" data-bs-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+ 
+                <span class="navbar-toggler-icon"></span>
+ 
+            </button>
+              </div> -->
+
+          <div class="inf">
+            <li><a href="/myhome">Home</a></li>
+            <li><a href="/">Products</a></li>
+            <li><a href="/aboutus">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+
+            <li><a href="/logout">Logout</a></li>
+            <!-- Add more navigation items here -->
+          </div>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Welcome to Our eCommerce Store!</h1>
+      <div class="product-grid">
+        <% for (let i = 1; i <= 12; i++) { %>
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="https://via.placeholder.com/300x300?text=Product+Image"
+              alt="Product <%= i %>"
+            />
+          </div>
+          <div class="product-details">
+            <h2 class="product-title">Product <%= i %></h2>
+            <p class="product-price">99.99 ₹</p>
+            <!-- <button>Add to Cart</button> -->
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
